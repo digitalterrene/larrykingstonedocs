@@ -1,0 +1,107 @@
+---
+title: Frontend & Backend Installation Guide
+description: Installation guide for my frontend and backend applications.
+---
+
+## Frontend Installation Guide
+
+To set up the frontend application, follow these instructions to get your Next.js app running locally.
+
+## Prerequisites
+
+Ensure you have the following installed on your machine:
+
+- Node.js (LTS version recommended) installed on your machine
+
+<Note title="Remember" type="danger">
+  Make sure to install the correct Node.js version to avoid compatibility
+  issues.
+</Note>
+
+## Installation Steps
+
+1. **Clone the Repository**: Clone the frontend repository to your local machine.
+
+   ```bash
+   git clone https://github.com/digitalterrene/frontend-project.git
+   ```
+
+2. **Navigate to the Project Directory**: Move into the project folder.
+
+   ```bash
+   cd frontend-project
+   ```
+
+3. **Install Dependencies**: Use npm or yarn to install the required dependencies.
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+4. **Start the Application**: Launch the application in development mode.
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. **Open in Browser**: Open your web browser and navigate to `http://localhost:3000` to view the application.
+
+## Backend Installation Guide
+
+Below is the installation guide for setting up the backend Node.js API.
+
+## Prerequisites
+
+Before starting, confirm you have:
+
+- Node.js (LTS version recommended) installed on your machine
+- Git
+- MongoDB (if using a local MongoDB database)
+
+<Note title="Remember" type="danger">
+  Be sure to configure your environment variables properly to connect to your
+  database and other services.
+</Note>
+
+## Installation Steps
+
+1. **Clone the Repository**: Clone the backend repository to your local machine.
+
+   ```bash
+   git clone https://github.com/digitalterrene/backend-project.git
+   ```
+
+2. **Navigate to the Project Directory**: Move into the project folder.
+
+   ```bash
+   cd cd backend-project
+   ```
+
+3. **Install Dependencies**: Install the necessary dependencies with npm or yarn.
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+4. **Set Environment Variables**: Create a `.env` file in the root directory, and configure your database URI and other necessary environment variables.
+
+   ```bash
+   PORT=5000
+   DATABASE_URI=mongodb://localhost:27017/your-database
+   ```
+
+5. **Start the Server**: Run the server in development mode.
+
+   ```bash
+   npm start
+   # or
+   yarn dev
+   ```
+
+6. **Test the API**: Your API should now be live at `http://localhost:5000`. Use an API client (e.g., Postman) to test your endpoints.

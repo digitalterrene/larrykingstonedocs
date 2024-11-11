@@ -1,0 +1,151 @@
+# Entities Listing Server Documentation
+
+The Entities Listing Server is a RESTful API built with Node.js, Express, and MongoDB, designed for managing and fetching account data for people and businesses. This server, called `entities-listing-server`, allows users to create, read, update, and delete their account data, while public users can view publicly accessible information about registered entities.
+
+## Overview
+
+**This server supports**:
+
+1. **User Account Management**: Allows individuals and businesses to create accounts.
+2. **CRUD Operations**: Registered users can perform full CRUD operations on their own accounts.
+3. **Public Access to Data**: Public users can fetch selected data about registered users and businesses.
+4. **Data Security**: User information is secured by JWT authentication for protected routes, ensuring that only authenticated users can modify their own data.
+
+## Schema
+
+The following data structure is stored for each user:
+
+```javascript
+{
+  email: String,         // User's unique email address
+  password: String,      // Encrypted password
+  name: String,          // First name
+  surname: String,       // Last name
+  age: Number,           // Age of the user
+  username: String,      // Unique username
+  instagram: String,     // Instagram handle
+  linkedin: String,      // LinkedIn handle
+  whatsapp: String,      // WhatsApp contact link
+  twitter: String,       // Twitter handle
+  mobile: String,        // Mobile number
+  race: String,          // Race/ethnicity
+  banner: String,        // Banner image URL
+  image: String,         // Profile image URL
+  address: String,       // Street address
+  state: String,         // State of residence
+  region: String,        // Regional location
+  country: String,       // Country of residence
+  gender: String,        // Gender identity
+  city: String,          // City of residence
+  generation: String,    // Generational identity
+  description: String,   // Brief user bio/description
+  postal_code: String,   // Postal code
+  profession: String     // User's profession
+}
+```
+
+Each document also includes automatically generated timestamps: `createdAt` and `updatedAt`.
+
+## API Endpoints
+
+The server exposes the following endpoints:
+
+### Public Endpoints
+
+**GET /entities**
+Fetches a list of all public entity data (with optional filters).
+
+**GET /entities/`id`**
+
+Fetches detailed information for a specific entity by ID.
+
+### Protected Endpoints (Authentication required)
+
+**POST /entities/register**
+Allows a new user or business to create an account. Requires email and password fields as mandatory data.
+
+**PUT /entities/`:id`**
+
+Updates account information for the authenticated user. The user must match the id provided in the request.
+
+**DELETE /entities/`:id`**
+
+Deletes the authenticated user's account. The user must match the id provided in the request.
+
+## Authentication Middleware
+
+The server uses JWT authentication to protect routes, ensuring that only authenticated users can modify their own data. Access tokens must be provided in the `Authorization` header as `Bearer <token>`.
+
+## Data Validation & Security
+
+1. **Email Validation**: Ensures a valid and unique email address.
+2. **Password Security**: Passwords are hashed before storage for enhanced security.
+3. **Input Validation**: Input validation is enforced using libraries like `validator` to ensure data consistency and validity.
+
+## Setting Up
+
+### 1. Prerequisites
+
+**Node.js (v14+)**
+**MongoDB database (local or cloud-based)**
+
+### 2. Environment Variables
+
+Create a `.env` file in the root of the project and define the following:
+
+```bash
+PORT=5000                // Port the server will run on
+MONGO_URI=<your_mongodb_connection_string>
+SECRET=<your_jwt_secret>
+```
+
+### 3. Running the Server
+
+After cloning the repository and setting up the environment variables:
+
+```bash
+npm install
+npm start
+```
+
+The server will be accessible at `http://localhost:<PORT>`.
+
+## Usage Example
+
+Here’s an example of creating a new account:
+
+```bash
+curl -X POST http://localhost:5000/entities \
+  -H "Content-Type: application/json" \
+  -d '{
+        "email": "testuser@example.com",
+        "password": "Password*123",
+        "name": "Test",
+        "surname": "User",
+        "profession": "Software Developer"
+      }'
+```
+
+Response:
+
+```bash
+{
+  "message": "Account created successfully",
+  "data": {
+    "_id": "606d5e7a1c2d4b0f2d1c9e0b",
+    "email": "testuser@example.com",
+    "name": "Test",
+    "surname": "User",
+    "profession": "Software Developer",
+    "createdAt": "2024-01-01T00:00:00Z"
+  }
+}
+```
+
+## Additional Notes
+
+**JWT Expiry**: Tokens expire in 3 days for security purposes.
+**CORS**: Configured to allow requests from specific origins.
+**Data Encryption**: Sensitive data, such as passwords, is hashed for security.
+
+This API provides a secure and flexible solution for managing public and private data for users and businesses, making it suitable for social networks, professional listings, and business directories.
