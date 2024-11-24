@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} font-regular`}
+        className={`${GeistSans.variable} ${GeistMono.variable}  font-regular`}
         suppressHydrationWarning
       >
         <ThemeProvider
@@ -31,9 +31,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="sm:container mx-auto w-[85vw] h-full">
-            {children}
-          </main>
+          <main className="sm:container mx-auto w-[85vw]  ">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>
