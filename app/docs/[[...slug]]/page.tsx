@@ -5,7 +5,7 @@ import { page_routes } from "@/lib/routes-config";
 import { notFound } from "next/navigation";
 import { getMarkdownForSlug } from "@/lib/markdown";
 import { PropsWithChildren, cache } from "react";
-import MarkdownTTSWrapper from "@/components/wrapper/MarkdownTTSWrapper";
+import MarkdownTTSWrapper, { HighlightedContent } from "@/components/wrapper/MarkdownTTSWrapper";
 type PageProps = {
   params: { slug: string[] };
 };
@@ -23,13 +23,13 @@ export default async function DocsPage({ params: { slug = [] } }: PageProps) {
       <div className="flex-[3] pt-10">
         <DocsBreadcrumb paths={slug} />
         {/* Pass the React component (markdown renderer) */}
-        <MarkdownTTSWrapper component={res.content} />
+        <MarkdownTTSWrapper id={pathName} component={res.content} />
         <Markdown>
           <h1>{res.frontmatter.title}</h1>
           <p className="-mt-4 text-muted-foreground text-[16.5px]">
             {res.frontmatter.description}
           </p>
-          <div>{res.content}</div>
+          <HighlightedContent id={pathName}>{res.content}</HighlightedContent>
           <Pagination pathname={pathName} />
         </Markdown>
       </div>
