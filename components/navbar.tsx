@@ -11,6 +11,7 @@ import { SheetLeftbar } from "./leftbar";
 import { page_routes } from "@/lib/routes-config";
 import { SheetClose } from "@/components/ui/sheet";
 import { useTheme } from "next-themes";
+import { HiOutlineSpeakerWave } from "react-icons/hi2";
 import { useEffect, useState } from "react";
 
 export const NAVLINKS = [
